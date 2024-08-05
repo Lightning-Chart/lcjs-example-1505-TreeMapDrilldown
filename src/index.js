@@ -1,4 +1,4 @@
-const lcjs = require('@arction/lcjs')
+const lcjs = require('@lightningchart/lcjs')
 
 const { lightningChart, Themes } = lcjs
 
@@ -9,12 +9,15 @@ const chart = lightningChart({
         theme: Themes[new URLSearchParams(window.location.search).get('theme') || 'darkGold'] || undefined,
     })
     .setTitle('Python installation file sizes - Click on Node to drilldown')
-    .setCursorResultTableFormatter((builder, node) => {
-        builder.addRow(node.name)
-        if (node.value < 2_000) builder.addRow(node.value.toFixed(0), 'B')
-        else if (node.value < 2_000_000) builder.addRow((node.value / 1000).toFixed(1), 'KB')
-        else if (node.value < 2_000_000_000) builder.addRow((node.value / 1000_000).toFixed(1), 'MB')
-        return builder
+    .setCursorFormatting((_, hit) => {
+        return [
+            [hit.name],
+            hit.value < 2000
+                ? [hit.value.toFixed(0), 'B']
+                : hit.value < 2000_000
+                ? [(hit.value / 1000).toFixed(0), 'KB']
+                : [(hit.value / 1000_000).toFixed(0), 'MB'],
+        ]
     })
 
 fetch(new URL(document.head.baseURI).origin + new URL(document.head.baseURI).pathname + 'examples/assets/1505/file-sizes.json')
