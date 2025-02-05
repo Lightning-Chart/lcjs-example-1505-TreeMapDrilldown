@@ -11,7 +11,7 @@ const chart = lightningChart({
     .setTitle('Python installation file sizes - Click on Node to drilldown')
     .setCursorFormatting((_, hit) => {
         return [
-            [hit.name],
+            [{ text: hit.name, rowFillStyle: chart.getTheme().cursorResultTableHeaderBackgroundFillStyle }],
             hit.value < 2000
                 ? [hit.value.toFixed(0), 'B']
                 : hit.value < 2000_000
