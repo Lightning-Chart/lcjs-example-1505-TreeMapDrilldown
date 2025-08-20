@@ -59,5 +59,5 @@ Direct developer email support can be purchased through a [Support Plan][4] or b
 © LightningChart Ltd 2009-2025. All rights reserved.
 
 
-[Treemap Chart]: https://lightningchart.com/js-charts/api-documentation/v8.0.0/classes/TreeMapChart.html
+[Treemap Chart]: https://lightningchart.com/js-charts/api-documentation/v8.0.1/classes/TreeMapChart.html
 
